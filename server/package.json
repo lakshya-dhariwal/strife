@@ -1,6 +1,7 @@
 {
   "name": "server-express-ts",
   "main": "build/index.js",
+  "license": "ISC",
   "scripts": {
     "start": "node build/index.js",
     "build": "tsc",
