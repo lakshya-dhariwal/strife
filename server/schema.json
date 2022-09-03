@@ -1,0 +1,11 @@
+{
+  "contest-id": "uuid()",
+  "contest-name": "pacman",
+  "contest-start-timestamp": "date",
+  "contest-end-timestamp": "date",
+  "participants": [
+    { "walletAddress": "", "score": 10 },
+    { "walletAddress": "", "score": 10 }
+  ],
+  "contest-status": true
+}
