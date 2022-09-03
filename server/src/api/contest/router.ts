@@ -28,7 +28,7 @@ const joinContestHandler = async (req: Request, res: Response, next: NextFunctio
 
 const createContestHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    await createContest(next, req.body);
+    res.json(await createContest(next, req.body));
   } catch (error) {
     next('');
   }
