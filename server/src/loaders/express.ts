@@ -29,7 +29,7 @@ export default ({ app }: { app: express.Application }): void => {
   app.use(helmet());
 
   // Enable Cross Origin Resource Sharing to all origins by default
-  app.use(cors());
+  // app.use(cors());
 
   // Middleware that transforms the raw string of req.body into json
   app.use(express.json());
