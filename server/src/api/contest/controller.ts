@@ -32,7 +32,11 @@ export const joinContest = async (next: NextFunction, contest_id: string, data: 
     }
 
     if (
-      (await db.find({ participants: { $elemMatch: { walletAddress: data.walletAddress } } }).toArray()).length != 0
+      (
+        await db
+          .find({ contest_id: contest_id, participants: { $elemMatch: { walletAddress: data.walletAddress } } })
+          .toArray()
+      ).length != 0
     ) {
       return { status: false, message: 'User already join the contest' };
     }
@@ -52,14 +56,15 @@ export const createContest = async (next: NextFunction, data: createContestSchem
   try {
     const db = (await database()).collection('contests');
     const currTime = Math.floor(Date.now() / 1000);
+    const contest_id = makeid();
     const result = {
-      contest_id: makeid(),
+      contest_id: contest_id,
       contest_start_time: currTime,
       contest_end_time: currTime + data.contest_duration * 3600,
     };
 
     db.insertOne({ ...result, ...data });
-    return { staus: true, message: 'Contest Created' };
+    return { staus: true, message: 'Contest Created', contest_id: contest_id };
   } catch (error) {
     LoggerInstance.error(error);
     next('Hello World');
