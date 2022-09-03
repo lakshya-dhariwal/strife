@@ -21,6 +21,6 @@
       "**/*.tsx",
       "providers/userProvider.js",
       "config/index.ts"
-    ],
+, "src/pages/Contest.jsx", "src/pages/Contest.js"    ],
     "exclude": ["node_modules"]
   }

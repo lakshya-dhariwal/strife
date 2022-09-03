@@ -9,11 +9,25 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #0D0D0D;
+  background-color: #0d0d0d;
   color: white;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/* for pacman */
+canvas {
+  display: block;
+  background: #000;
+}
+#score-pacman {
+  visibility: hidden;
+}
+
+.pacman-scores {
+  color: #ff8744 !important;
+  font-weight: 600 !important;
 }
