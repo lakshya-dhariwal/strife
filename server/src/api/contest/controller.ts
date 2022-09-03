@@ -37,7 +37,10 @@ export const joinContest = async (next: NextFunction, contest_id: string, data: 
       return { status: false, message: 'User already join the contest' };
     }
 
-    await db.updateOne({ contest_id: contest_id }, { $push: { participants: data } });
+    await db.updateOne(
+      { contest_id: contest_id },
+      { $push: { participants: { walletAddress: data.walletAddress, score: data.score || 0 } } },
+    );
     return { staus: true, message: 'User added to contest' };
   } catch (error) {
     LoggerInstance.error(error);
