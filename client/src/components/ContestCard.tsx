@@ -5,6 +5,7 @@ import {
   Typography,
 } from "@cred/neopop-web/lib/components";
 import { colorPalette, FontVariant } from "@cred/neopop-web/lib/primitives";
+import { useNavigate } from "react-router-dom";
 
 const ContestCard: React.FC<{
   contestName: string;
@@ -12,6 +13,18 @@ const ContestCard: React.FC<{
   comingSoon?: boolean;
   timestamp: number;
 }> = ({ contestName, contestId, comingSoon, timestamp }) => {
+  const navigate = useNavigate();
+  const leaderboardRedirect = (id: string) => {
+    //timeout for animation
+    setTimeout(() => {
+      navigate(`/leaderboard/${id}`);
+    }, 500);
+  };
+  const contestRedirect = (id: string) => {
+    setTimeout(() => {
+      navigate(`/contest/${id}`);
+    }, 500);
+  };
   return (
     <ElevatedCard
       edgeColors={{
@@ -48,7 +61,7 @@ const ContestCard: React.FC<{
             fullWidth
             style={{ margin: " 0.25rem 0rem" }}
             onClick={() => {
-              console.log("I'm clicked");
+              leaderboardRedirect(contestId);
             }}
           >
             <div className="flex  mx-auto">
@@ -62,7 +75,7 @@ const ContestCard: React.FC<{
             size="medium"
             colorMode="light"
             onClick={() => {
-              console.log("I'm clicked");
+              contestRedirect(contestId);
             }}
             fullWidth
             style={{ margin: " 0.25rem 0rem 0.1rem 0rem" }}
