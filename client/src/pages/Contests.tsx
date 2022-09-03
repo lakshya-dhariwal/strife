@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ContestCard from "../components/ContestCard";
+import { getAllContests } from "../services";
 
 function Contests() {
+  const [contests, setContests] = useState<any>();
+  const allContests = async () => {
+    const data = await getAllContests();
+    console.log({ data });
+    setContests(data);
+  };
+  useEffect(() => {
+    allContests();
+  }, []);
   return (
     <>
       <div className="w-[50vw] mx-auto">
