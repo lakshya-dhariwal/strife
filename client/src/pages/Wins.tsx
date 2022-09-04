@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   Button,
   ElevatedCard,
@@ -7,7 +8,10 @@ import { FontVariant, colorPalette } from "@cred/neopop-web/lib/primitives";
 import React from "react";
 import { capitalizeFirstLetter } from "../components/ContestCard";
 import { getWins } from "../services";
+import { addr, abi } from "../contract/abi";
+import GetContract from "../hooks/GetContract";
 const Wins = () => {
+  const [account, setAccount] = React.useState("");
   const [wins, setWins] = React.useState<any>(null);
   const winsData = async () => {
     const data = await getWins();
@@ -85,7 +89,17 @@ const Wins = () => {
                         kind="elevated"
                         size="medium"
                         colorMode="light"
-                        onClick={() => {}}
+                        onClick={async () => {
+                          const accounts = await ethereum.request({
+                            method: "eth_requestAccounts",
+                          });
+                          setAccount(accounts[0]);
+                          try {
+                            await contract.Withdraw(account, 3);
+                          } catch (err) {
+                            console.log(err);
+                          }
+                        }}
                         fullWidth
                         style={{ margin: " 0.25rem 0rem 0.1rem 0rem" }}
                       >

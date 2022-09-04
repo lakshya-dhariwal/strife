@@ -1,4 +1,6 @@
-import React from "react";
+//@ts-nocheck
+import React, { useState } from "react";
+import web3 from "web3";
 import {
   ElevatedCard,
   Button,
@@ -23,6 +25,7 @@ const ContestCard: React.FC<any> = ({
   const time = contest_start_time - contest_end_time;
 
   const navigate = useNavigate();
+
   const leaderboardRedirect = (id: string) => {
     //timeout for animation
     setTimeout(() => {
