@@ -1,5 +1,6 @@
 //@ts-nocheck
 import React, { useState } from "react";
+import web3 from "web3";
 import {
   ElevatedCard,
   Button,
@@ -30,7 +31,10 @@ const ContestCard: React.FC<{
 
   //
   const contestRedirect = async () => {
-    const contract = GetContract(addr, abi);
+    // const contract = new web3.eth.Contract(abi, addr, {
+    //   from: account,
+    //   gasPrice: "20000000000",
+    // });
     const accounts = await ethereum.request({ method: "eth_requestAccounts" });
     setAccount(accounts[0]);
     try {
