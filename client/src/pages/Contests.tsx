@@ -1,4 +1,4 @@
-import { Typography } from "@cred/neopop-web/lib/components";
+import { Button, Typography } from "@cred/neopop-web/lib/components";
 import { FontVariant, colorPalette } from "@cred/neopop-web/lib/primitives";
 import React, { useEffect, useState } from "react";
 import ContestCard from "../components/ContestCard";
@@ -19,6 +19,7 @@ function Contests() {
       <div className="w-[50vw] mx-auto">
         <div className="flex justify-around items-center w-full"></div>
       </div>
+
       <Typography
         {...FontVariant.HeadingBold28}
         color={colorPalette.neoPaccha[500]}
@@ -32,6 +33,20 @@ function Contests() {
           return <ContestCard {...contest} />;
         })}
       </div>
+      <Button
+        variant="secondary"
+        kind="elevated"
+        size="medium"
+        colorMode="light"
+        fullWidth
+        style={{ margin: " 1rem 0.2rem 0.25rem 0.2rem " }}
+        onClick={() => {
+          alert("Coming Soon");
+        }}
+        showArrow
+      >
+        Submit your own challenge
+      </Button>
     </>
   );
 }
