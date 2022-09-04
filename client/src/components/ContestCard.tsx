@@ -6,6 +6,7 @@ import {
 } from "@cred/neopop-web/lib/components";
 import { colorPalette, FontVariant } from "@cred/neopop-web/lib/primitives";
 import { useNavigate } from "react-router-dom";
+import { joinContest } from "../services";
 
 const ContestCard: React.FC<{
   contestName: string;
@@ -43,7 +44,7 @@ const ContestCard: React.FC<{
       >
         {" "}
         {comingSoon && (
-          <div className="ribbon ribbon-top-right">
+          <div className="ribbon ribbon-top-right opacity-100">
             <span>Coming Soon</span>
           </div>
         )}
@@ -92,6 +93,7 @@ const ContestCard: React.FC<{
               colorMode="light"
               onClick={() => {
                 if (!comingSoon) {
+                  joinContest(contestId);
                   contestRedirect(contestId);
                 }
               }}
