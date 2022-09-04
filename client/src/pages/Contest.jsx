@@ -44,6 +44,7 @@ function Contest() {
 
   return (
     <div>
+      
       {modal && (
         <Modal>
           <ElevatedCard

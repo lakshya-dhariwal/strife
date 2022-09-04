@@ -12,6 +12,7 @@ import { publicProvider } from "wagmi/providers/public";
 import Home from "./pages/Home";
 import Contests from "./pages/Contests";
 import Contest from "./pages/Contest";
+import Wins from "./pages/Wins";
 import Leaderboard from "./pages/Leaderboard";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
