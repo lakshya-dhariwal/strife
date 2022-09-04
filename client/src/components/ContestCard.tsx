@@ -7,7 +7,9 @@ import {
 import { colorPalette, FontVariant } from "@cred/neopop-web/lib/primitives";
 import { useNavigate } from "react-router-dom";
 import { joinContest } from "../services";
-
+export function capitalizeFirstLetter(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 const ContestCard: React.FC<any> = ({
   contest_duration,
   contest_end_time,
@@ -19,9 +21,7 @@ const ContestCard: React.FC<any> = ({
   _id,
 }) => {
   const time = contest_start_time - contest_end_time;
-  function capitalizeFirstLetter(string: string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+
   const navigate = useNavigate();
   const leaderboardRedirect = (id: string) => {
     //timeout for animation

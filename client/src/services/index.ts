@@ -31,7 +31,20 @@ export const getLeaderboard = async (id: string) => {
   return data;
 };
 
-export const getWins = async (id: string) => {
-  const data = await axios.post(`${API}/leaderboard/wining/${id}`);
-  return data;
+export const getWins = async () => {
+  // const data = await axios.get(`${API}/leaderboard/get-all-wins`);
+  // console.log(data);
+  const res = [
+    {
+      address: "adrrss",
+      contest: "pacman",
+      contest_id: "ox4GHa",
+    },
+    {
+      address: "adrrss",
+      contest: "Poker",
+      contest_id: "zLaobg",
+    },
+  ];
+  return res;
 };
