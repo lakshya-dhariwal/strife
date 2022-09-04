@@ -48,7 +48,7 @@ function Leaderboard() {
         <div className="grid grid-cols-5">
           {leaderboard?.map((contest: any, index: any) => {
             return (
-              <div className={`w-[300px] flex items-center justify-center  `}>
+              <div className={` flex items-center justify-center `}>
                 <ElevatedCard
                   edgeColors={{
                     bottom: colorPalette.popWhite[100],
@@ -56,43 +56,47 @@ function Leaderboard() {
                   }}
                   style={{
                     width: "300px",
-                    position: "relative",
+                    position: "",
                   }}
                 >
-                  <Typography
-                    {...FontVariant.HeadingBold28}
-                    color={colorPalette.poliPurple[500]}
-                    fontSize={18}
-                    style={{ margin: " 0.25rem 0.2rem 1rem 6rem " }}
-                  >
-                    {contest.walletAddress}
-                  </Typography>
-                  <ScoreMeter
-                    colorConfig={{
-                      dotColor: "",
-                      indicatorColors: {
-                        decrement: "#FFB098",
-                        increment: "#5CDDBE",
-                        neutral: "#e2e2e2",
-                      },
-                      meterBorderColor: "#3D3D3D",
-                      meterStrokeBackground: "#0d0d0d",
-                      meterStrokeColor: {
-                        average: "#EDFE79",
-                        excellent: "#06C270",
-                        poor: "#F29947",
-                      },
-                      scoreColor: "#ffffff",
-                      scoreContainerBackground: "#161616",
-                      scoreContainerBorder: "#0d0d0d",
-                    }}
-                    colorMode="dark"
-                    lowerLimit={0}
-                    reading={contest.score}
-                    scoreDesc={`Position : ${index + 1}`}
-                    type="average"
-                    upperLimit={300}
-                  />
+                  <div className="w-full h-full border-t-[1px] border-l-[1px] p-5">
+                    <Typography
+                      {...FontVariant.HeadingBold28}
+                      color="#06C270"
+                      fontSize={18}
+                      style={{ margin: " 0.25rem 0.2rem 1rem 6rem " }}
+                    >
+                      {contest.walletAddress}
+                    </Typography>
+                    <div className="w-fit mx-auto">
+                      <ScoreMeter
+                        colorConfig={{
+                          dotColor: "",
+                          indicatorColors: {
+                            decrement: "#FFB098",
+                            increment: "#5CDDBE",
+                            neutral: "#e2e2e2",
+                          },
+                          meterBorderColor: "#3D3D3D",
+                          meterStrokeBackground: "#0d0d0d",
+                          meterStrokeColor: {
+                            average: "#EDFE79",
+                            excellent: "#06C270",
+                            poor: "#F29947",
+                          },
+                          scoreColor: "#ffffff",
+                          scoreContainerBackground: "#161616",
+                          scoreContainerBorder: "#0d0d0d",
+                        }}
+                        colorMode="dark"
+                        lowerLimit={0}
+                        reading={contest.score}
+                        scoreDesc={`Position : ${index + 1}`}
+                        type="average"
+                        upperLimit={300}
+                      />
+                    </div>
+                  </div>
                 </ElevatedCard>
               </div>
             );
