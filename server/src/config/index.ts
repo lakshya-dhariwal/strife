@@ -14,11 +14,6 @@ export default {
   databaseURL: process.env.MONGODB_URI,
 
   /**
-   * The secret sauce to validate JWT
-   */
-  jwtSecret: process.env.JWT_SECRET,
-
-  /**
    * Used by Winston logger
    */
   logs: {

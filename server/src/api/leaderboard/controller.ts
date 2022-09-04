@@ -27,7 +27,7 @@ export const updateScore = async (next: NextFunction, data: updateScoreSchema) =
       return { status: false, message: 'data is undefined' };
     }
     await db.updateOne(
-      { contest_id: data.contest_id, 'participants.$.walletAddress': data.walletAddress },
+      { contest_id: data.contest_id, 'participants.walletAddress': data.walletAddress },
       { $set: { 'participants.$.score': data.score } },
     );
     return { staus: true, message: 'User score updated' };

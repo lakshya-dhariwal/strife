@@ -34,9 +34,20 @@ const getWiningHandler = async (req: Request, res: Response, next: NextFunction)
   }
 };
 
+const getAllWin = async (req: Request, res: Response, next: NextFunction) => {
+  const address = req.params.address;
+  res.json({
+    previousWin: [
+      { address: address, contest: 'pacman' },
+      { address: address, contest: 'Poker' },
+    ],
+  });
+};
+
 export const leaderboardRouteHandler = () => {
   app.get('/:contest_id', fetchLeaderboardHandler);
   app.put('/update-score', updateScoreleaderboardHandler);
   app.post('/wining/:contest_id', getWiningHandler);
+  app.get('/get-all-wins');
   return app;
 };
