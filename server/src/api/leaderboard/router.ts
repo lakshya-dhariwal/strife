@@ -36,7 +36,7 @@ const getWiningHandler = async (req: Request, res: Response, next: NextFunction)
 
 const getAllWin = async (req: Request, res: Response, next: NextFunction) => {
   const address = req.params.address;
-  res.json({
+  return res.json({
     previousWin: [
       { address: address, contest: 'pacman', contest_id: 'ox4GHa' },
       { address: address, contest: 'Poker', contest_id: 'zLaobg' },
@@ -48,6 +48,6 @@ export const leaderboardRouteHandler = () => {
   app.get('/:contest_id', fetchLeaderboardHandler);
   app.put('/update-score', updateScoreleaderboardHandler);
   app.post('/wining/:contest_id', getWiningHandler);
-  app.get('/get-all-wins', getAllWin);
+  app.get('/get-all-wins/:address', getAllWin);
   return app;
 };
