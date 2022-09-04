@@ -37,10 +37,7 @@ const getWiningHandler = async (req: Request, res: Response, next: NextFunction)
 const getAllWin = async (req: Request, res: Response, next: NextFunction) => {
   const address = req.params.address;
   return res.json({
-    previousWin: [
-      { address: address, contest: 'pacman', contest_id: 'ox4GHa' },
-      { address: address, contest: 'Poker', contest_id: 'zLaobg' },
-    ],
+    previousWin: [{ address: address, contest: 'pacman', contest_id: 'ox4GHa' }],
   });
 };
 
