@@ -45,7 +45,7 @@ function Leaderboard() {
             </Typography>
           </>
         )}
-        <div className="grid grid-cols-5">
+        <div className="grid grid-cols-3">
           {leaderboard?.map((contest: any, index: any) => {
             return (
               <div className={` flex items-center justify-center `}>
@@ -55,20 +55,19 @@ function Leaderboard() {
                     right: colorPalette.popWhite[300],
                   }}
                   style={{
-                    width: "300px",
+                    width: "530px",
                     position: "",
                   }}
                 >
-                  <div className="w-full h-full border-t-[1px] border-l-[1px] p-5">
+                  <div className="w-full h-full border-t-[1px] border-l-[1px] p-5 flex flex-col">
                     <Typography
                       {...FontVariant.HeadingBold28}
                       color="#06C270"
                       fontSize={18}
-                      style={{ margin: " 0.25rem 0.2rem 1rem 6rem " }}
                     >
                       {contest.walletAddress}
                     </Typography>
-                    <div className="w-fit mx-auto">
+                    <div className="w-fit mx-auto mt-2">
                       <ScoreMeter
                         colorConfig={{
                           dotColor: "",

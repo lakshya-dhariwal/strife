@@ -8,20 +8,17 @@ const Nav: React.FC = () => {
     <div className="p-2 flex justify-between px-3 items-center">
       <h1>
         {/* <Typography {...FontVariant.HeadingBold28} color={colorPalette.white}> */}
-        <h1 className="tetx-white text-[28px]">Strif3</h1>
+        <h1 className="text-[#6A35FF]  text-[30px] roboto">Strife</h1>
         {/* </Typography> */}
       </h1>
       <ul className="flex items-center ">
         <li className="hover:opacity-80 px-2 cursor-pointer">
-          {" "}
           <a href="/">Home</a>
         </li>
         <li className="hover:opacity-80 px-2 cursor-pointer">
-          {" "}
           <a href="/contests">Contests</a>
         </li>
         <li className="hover:opacity-80 px-2 cursor-pointer">
-          {" "}
           <a href="/wins">Wins</a>
         </li>
       </ul>
