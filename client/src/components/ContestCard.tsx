@@ -18,6 +18,7 @@ const ContestCard: React.FC<any> = ({
   participants,
   _id,
 }) => {
+  const time = contest_start_time - contest_end_time;
   function capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -50,13 +51,19 @@ const ContestCard: React.FC<any> = ({
         }}
       >
         {" "}
-        <img src="https://placehold.jp/297x200.png" alt="img" />
+        <img
+          src={`/images/${contest_id}.png`}
+          alt="img"
+          width={297}
+          height={200}
+          className="object-contain border-t-[1px] border-l-[1px]"
+        />
         {contest_status && (
           <div className="ribbon ribbon-top-right opacity-100">
             <span>Coming Soon</span>
           </div>
         )}
-        <div className="flex flex-col w-full h-full  items-center border-t-[1px] border-l-[1px] py-3">
+        <div className="flex flex-col w-full h-full  items-center  border-l-[1px] py-3">
           <Typography
             {...FontVariant.HeadingBold28}
             fontSize={20}
@@ -67,8 +74,8 @@ const ContestCard: React.FC<any> = ({
           </Typography>
           <div className="">
             <h3 className="flex items-center  m-1">
-              <img src="/images/clock.svg" className="pr-2" /> 12:22:44 Time
-              Left
+              <img src="/images/clock.svg" className="pr-2" />{" "}
+              {contest_duration} Hours Left
             </h3>
             <h3 className="flex items-center m-1">
               <img src="/images/ticket.svg" className="pr-2" /> Enter for 1

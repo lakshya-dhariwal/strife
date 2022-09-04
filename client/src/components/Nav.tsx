@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Typography } from "@cred/neopop-web/lib/components";
 import { colorPalette, FontVariant } from "@cred/neopop-web/lib/primitives";
 import { Button } from "@cred/neopop-web/lib/components";
+import { Link } from "react-router-dom";
 const Nav: React.FC = () => {
   return (
     <div className="p-2 flex justify-between px-3 items-center">
@@ -10,6 +11,20 @@ const Nav: React.FC = () => {
         <h1 className="tetx-white text-[28px]">Strif3</h1>
         {/* </Typography> */}
       </h1>
+      <ul className="flex items-center ">
+        <li className="hover:opacity-80 px-2 cursor-pointer">
+          {" "}
+          <a href="/">Home</a>
+        </li>
+        <li className="hover:opacity-80 px-2 cursor-pointer">
+          {" "}
+          <a href="/contests">Contests</a>
+        </li>
+        <li className="hover:opacity-80 px-2 cursor-pointer">
+          {" "}
+          <a href="/wins">Wins</a>
+        </li>
+      </ul>
       <Button
         variant="secondary"
         kind="elevated"

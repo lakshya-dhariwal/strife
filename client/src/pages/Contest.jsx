@@ -44,6 +44,14 @@ function Contest() {
 
   return (
     <div>
+      <Typography
+        {...FontVariant.HeadingBold28}
+        color={colorPalette.neoPaccha[500]}
+        fontSize={24}
+        style={{ margin: " 0.25rem 0.2rem 1rem 0.2rem " }}
+      >
+        All Contests
+      </Typography>
       {modal && (
         <Modal>
           <ElevatedCard
