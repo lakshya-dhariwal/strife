@@ -1,4 +1,5 @@
-import React from "react";
+//@ts-nocheck
+import React, { useState } from "react";
 import {
   ElevatedCard,
   Button,
@@ -6,6 +7,9 @@ import {
 } from "@cred/neopop-web/lib/components";
 import { colorPalette, FontVariant } from "@cred/neopop-web/lib/primitives";
 import { useNavigate } from "react-router-dom";
+import GetContract from "../hooks/GetContract";
+import { addr, abi } from "../contract/abi";
+import GetAccount from "../hooks/GetAccounts";
 
 const ContestCard: React.FC<{
   contestName: string;
@@ -13,17 +17,27 @@ const ContestCard: React.FC<{
   comingSoon?: boolean;
   timestamp: number;
 }> = ({ contestName, contestId, comingSoon, timestamp }) => {
+  const [account, setAccount] = useState("");
+
   const navigate = useNavigate();
+
   const leaderboardRedirect = (id: string) => {
     //timeout for animation
     setTimeout(() => {
       navigate(`/leaderboard/${id}`);
     }, 500);
   };
-  const contestRedirect = (id: string) => {
-    setTimeout(() => {
-      navigate(`/contest/${id}`);
-    }, 500);
+
+  //
+  const contestRedirect = async () => {
+    const contract = GetContract(addr, abi);
+    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+    setAccount(accounts[0]);
+    try {
+      await contract.transfer({ from: account, value: 1 });
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <ElevatedCard
@@ -75,7 +89,10 @@ const ContestCard: React.FC<{
             size="medium"
             colorMode="light"
             onClick={() => {
-              contestRedirect(contestId);
+              contestRedirect();
+              setTimeout(() => {
+                navigate(`/contest/${contestId}`);
+              }, 500);
             }}
             fullWidth
             style={{ margin: " 0.25rem 0rem 0.1rem 0rem" }}
