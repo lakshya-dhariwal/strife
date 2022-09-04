@@ -48,6 +48,6 @@ export const leaderboardRouteHandler = () => {
   app.get('/:contest_id', fetchLeaderboardHandler);
   app.put('/update-score', updateScoreleaderboardHandler);
   app.post('/wining/:contest_id', getWiningHandler);
-  app.get('/get-all-wins', getAllWin);
+  app.get('/get-all-wins/:address', getAllWin);
   return app;
 };
