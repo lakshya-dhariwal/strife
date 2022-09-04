@@ -8,12 +8,19 @@ import { colorPalette, FontVariant } from "@cred/neopop-web/lib/primitives";
 import { useNavigate } from "react-router-dom";
 import { joinContest } from "../services";
 
-const ContestCard: React.FC<{
-  contestName: string;
-  contestId: string;
-  comingSoon?: boolean;
-  timestamp: number;
-}> = ({ contestName, contestId, comingSoon, timestamp }) => {
+const ContestCard: React.FC<any> = ({
+  contest_duration,
+  contest_end_time,
+  contest_id,
+  contest_name,
+  contest_start_time,
+  contest_status,
+  participants,
+  _id,
+}) => {
+  function capitalizeFirstLetter(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   const navigate = useNavigate();
   const leaderboardRedirect = (id: string) => {
     //timeout for animation
@@ -29,7 +36,7 @@ const ContestCard: React.FC<{
   return (
     <div
       className={`w-full flex items-center justify-center ${
-        comingSoon && "opacity-70"
+        contest_status && "opacity-70"
       } `}
     >
       <ElevatedCard
@@ -43,7 +50,8 @@ const ContestCard: React.FC<{
         }}
       >
         {" "}
-        {comingSoon && (
+        <img src="https://placehold.jp/297x200.png" alt="img" />
+        {contest_status && (
           <div className="ribbon ribbon-top-right opacity-100">
             <span>Coming Soon</span>
           </div>
@@ -55,7 +63,7 @@ const ContestCard: React.FC<{
             color={colorPalette.neoPaccha[500]}
             style={{ margin: " 0rem 0rem 1rem 0rem" }}
           >
-            {contestName}
+            {capitalizeFirstLetter(contest_name)}
           </Typography>
           <div className="">
             <h3 className="flex items-center  m-1">
@@ -76,8 +84,8 @@ const ContestCard: React.FC<{
               fullWidth
               style={{ margin: " 0.25rem 0rem" }}
               onClick={() => {
-                if (!comingSoon) {
-                  leaderboardRedirect(contestId);
+                if (!contest_status) {
+                  leaderboardRedirect(contest_id);
                 }
               }}
             >
@@ -92,9 +100,9 @@ const ContestCard: React.FC<{
               size="medium"
               colorMode="light"
               onClick={() => {
-                if (!comingSoon) {
-                  joinContest(contestId);
-                  contestRedirect(contestId);
+                if (!contest_status) {
+                  joinContest(contest_id);
+                  contestRedirect(contest_id);
                 }
               }}
               fullWidth
