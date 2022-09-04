@@ -71,7 +71,7 @@ const Wins = () => {
                       color={colorPalette.neoPaccha[500]}
                       style={{ margin: " 0rem 0rem 1rem 0rem" }}
                     >
-                      win?.contest_name
+                      {capitalizeFirstLetter(win?.contest)}
                     </Typography>
                     <div className="">
                       <h3 className="flex items-center m-1">
