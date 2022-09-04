@@ -31,5 +31,34 @@ export const updateScore = async (next: NextFunction, data: updateScoreSchema) =
       { $set: { 'participants.$.score': data.score } },
     );
     return { staus: true, message: 'User score updated' };
-  } catch (error) {}
+  } catch (error) {
+    LoggerInstance.error(error);
+    return { status: false, message: `ERROR: ${error}` };
+  }
+};
+
+export const getWining = async (next: NextFunction, contest_id: string) => {
+  try {
+    const db = (await database()).collection('contests');
+    const result = db
+      .aggregate([
+        { $match: { contest_id: contest_id } },
+        {
+          $addFields: {
+            currentWiningParticipant: {
+              $reduce: {
+                input: '$participants',
+                initialValue: { score: 0 },
+                in: { $cond: [{ $gte: ['$$this.score', '$$value.score'] }, '$$this', '$$value'] },
+              },
+            },
+          },
+        },
+      ])
+      .toArray();
+    return result;
+  } catch (error) {
+    LoggerInstance.error(error);
+    return { status: false, message: `ERROR: ${error}` };
+  }
 };
