@@ -7,6 +7,7 @@ import { colorPalette, FontVariant } from "@cred/neopop-web/lib/primitives";
 import Home from "./pages/Home";
 import Contests from "./pages/Contests";
 import Contest from "./pages/Contest";
+import Wins from "./pages/Wins";
 import Leaderboard from "./pages/Leaderboard";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -19,6 +20,7 @@ const App: React.FC = () => {
           <Route path="/contest/:id" element={<Contest />} />
           <Route path="/leaderboard/:id" element={<Leaderboard />} />
           <Route path="/contests" element={<Contests />} />
+          <Route path="/wins" element={<Wins />} />{" "}
           <Route path="/" element={<Home />} />{" "}
         </Routes>
       </Router>

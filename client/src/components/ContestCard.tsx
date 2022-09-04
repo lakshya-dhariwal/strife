@@ -27,17 +27,17 @@ const ContestCard: React.FC<any> = ({
     //timeout for animation
     setTimeout(() => {
       navigate(`/leaderboard/${id}`);
-    }, 500);
+    }, 400);
   };
   const contestRedirect = (id: string) => {
     setTimeout(() => {
       navigate(`/contest/${id}`);
-    }, 500);
+    }, 400);
   };
   return (
     <div
       className={`w-full flex items-center justify-center ${
-        contest_status && "opacity-70"
+        !contest_status == true ? "opacity-70" : " "
       } `}
     >
       <ElevatedCard
@@ -58,7 +58,7 @@ const ContestCard: React.FC<any> = ({
           height={200}
           className="object-contain border-t-[1px] border-l-[1px]"
         />
-        {contest_status && (
+        {!contest_status && (
           <div className="ribbon ribbon-top-right opacity-100">
             <span>Coming Soon</span>
           </div>
@@ -91,9 +91,7 @@ const ContestCard: React.FC<any> = ({
               fullWidth
               style={{ margin: " 0.25rem 0rem" }}
               onClick={() => {
-                if (!contest_status) {
-                  leaderboardRedirect(contest_id);
-                }
+                leaderboardRedirect(contest_id);
               }}
             >
               <div className="flex  mx-auto">
@@ -107,9 +105,9 @@ const ContestCard: React.FC<any> = ({
               size="medium"
               colorMode="light"
               onClick={() => {
-                if (!contest_status) {
-                  joinContest(contest_id);
+                if (contest_status) {
                   contestRedirect(contest_id);
+                  joinContest(contest_id);
                 }
               }}
               fullWidth

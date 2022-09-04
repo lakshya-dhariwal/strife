@@ -25,3 +25,13 @@ export const updateScore = async (
   });
   return data;
 };
+
+export const getLeaderboard = async (id: string) => {
+  const data = await axios.get(`${API}/leaderboard/${id}`);
+  return data;
+};
+
+export const getWins = async (id: string) => {
+  const data = await axios.post(`${API}/leaderboard/wining/${id}`);
+  return data;
+};
