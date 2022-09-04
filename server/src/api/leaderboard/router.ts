@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
 import { NextFunction } from 'express';
-import { fetchLeaderboard, updateScore } from './controller';
+import { fetchLeaderboard, getWining, updateScore } from './controller';
 import { updateScoreSchema } from './schema';
 
 const app = Router();
@@ -14,7 +14,7 @@ const fetchLeaderboardHandler = async (req: Request, res: Response, next: NextFu
   }
 };
 
-const updateScoreleaderboard = async (req: Request, res: Response, next: NextFunction) => {
+const updateScoreleaderboardHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const data: updateScoreSchema = req.body;
     const result = await updateScore(next, data);
@@ -24,8 +24,19 @@ const updateScoreleaderboard = async (req: Request, res: Response, next: NextFun
   }
 };
 
+const getWiningHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const contest_id = req.params.contest_id;
+    const data = await getWining(next, contest_id);
+    return res.json(data);
+  } catch {
+    next('');
+  }
+};
+
 export const leaderboardRouteHandler = () => {
   app.get('/:contest_id', fetchLeaderboardHandler);
-  app.put('/update-score', updateScoreleaderboard);
+  app.put('/update-score', updateScoreleaderboardHandler);
+  app.post('/wining/:contest_id', getWiningHandler);
   return app;
 };
