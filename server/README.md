@@ -22,7 +22,7 @@ crafted with <span style="color: #DE6C5E;">&hearts;</span> by your friends on th
 
 > Star the [repo](https://github.com/srm-kzilla/springboard). Show the love. ❣
 
-## Built With 🚀
+## Server Built With 🚀
 
 - [Node.js](https://nodejs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
