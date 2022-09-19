@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   Button,
   ElevatedCard,
@@ -7,7 +8,27 @@ import { FontVariant, colorPalette } from "@cred/neopop-web/lib/primitives";
 import React from "react";
 import { capitalizeFirstLetter } from "../components/ContestCard";
 import { getWins } from "../services";
+import { addr, abi } from "../contract/abi";
+import GetContract from "../hooks/GetContract";
+import { constants } from "ethers";
 const Wins = () => {
+  const [account, setAccount] = React.useState("");
+  const [claimed, setClaimed] = React.useState(false);
+  const contract = GetContract(addr, abi);
+
+  const connect = async () => {
+    const accounts = await ethereum.request({
+      method: "eth_requestAccounts",
+    });
+    setAccount(accounts[0]);
+    localStorage.setItem("addr", account);
+    try {
+      await contract.Withdraw(account, 3, { gasLimit: 1 * 10 ** 6 });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const [wins, setWins] = React.useState<any>(null);
   const winsData = async () => {
     const data = await getWins();
@@ -62,7 +83,7 @@ const Wins = () => {
                     alt="img"
                     width={297}
                     height={200}
-                    className="object-stretch border-t-[1px] border-l-[1px] max-h-[146px] w-full"
+                    className="object-stretch border-t-[1px] border-l-[1px] max-h-[120px] w-full"
                   />
                   <div className="flex flex-col w-full h-full  items-center  border-l-[1px] py-3">
                     <Typography
@@ -85,13 +106,16 @@ const Wins = () => {
                         kind="elevated"
                         size="medium"
                         colorMode="light"
-                        onClick={() => {}}
+                        onClick={() => {
+                          connect();
+                          setClaimed(true);
+                        }}
                         fullWidth
                         style={{ margin: " 0.25rem 0rem 0.1rem 0rem" }}
                       >
                         <div className="flex  mx-auto">
                           <img src="/images/eth.svg" className="pr-2" />{" "}
-                          <>Claim Prize</>
+                          <> {claimed ? "Claimed" : "Claim Prize"}</>
                         </div>
                       </Button>
                     </div>

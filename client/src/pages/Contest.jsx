@@ -8,17 +8,22 @@ import {
 } from "@cred/neopop-web/lib/components";
 import { colorPalette, FontVariant } from "@cred/neopop-web/lib/primitives";
 import Modal from "../components/Modal";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { postUpdateScore } from "../services";
 
 function Contest() {
+  const { id } = useParams();
   const [score, setScore] = React.useState(0);
   const [gameOver, setGameOver] = useState(null);
   const [modal, setModal] = useState(false);
   const [name, setName] = useState("");
-  const submitScore = () => {
+  const navigate = useNavigate();
+  const submitScore = async () => {
     //timeout for animation
-    setTimeout(() => {
-      //code here
-    }, 500);
+
+    //code here
+    await postUpdateScore(id, name, score);
+    navigate(`/leaderboard/${id}`);
   };
 
   React.useEffect(() => {
@@ -44,7 +49,6 @@ function Contest() {
 
   return (
     <div>
-      
       {modal && (
         <Modal>
           <ElevatedCard
