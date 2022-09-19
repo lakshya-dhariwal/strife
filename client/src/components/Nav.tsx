@@ -1,5 +1,5 @@
 import Web3 from "web3";
-import { abi, addr } from "../contract/abi";
+import { abi } from "../contract/abi";
 import React, { useEffect, useState } from "react";
 import { Typography } from "@cred/neopop-web/lib/components";
 import { colorPalette, FontVariant } from "@cred/neopop-web/lib/primitives";

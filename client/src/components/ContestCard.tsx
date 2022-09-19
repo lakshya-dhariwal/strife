@@ -9,6 +9,8 @@ import {
 import { colorPalette, FontVariant } from "@cred/neopop-web/lib/primitives";
 import { useNavigate } from "react-router-dom";
 import { joinContest } from "../services";
+import { addr, abi } from "../contract/abi";
+import GetContract from "../hooks/GetContract";
 export function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -25,17 +27,27 @@ const ContestCard: React.FC<any> = ({
   const time = contest_start_time - contest_end_time;
 
   const navigate = useNavigate();
-
+  const [account, setAccount] = React.useState("");
   const leaderboardRedirect = (id: string) => {
     //timeout for animation
     setTimeout(() => {
       navigate(`/leaderboard/${id}`);
     }, 400);
   };
-  const contestRedirect = (id: string) => {
-    setTimeout(() => {
+
+  const contract = GetContract(addr, abi);
+  const contestRedirect = async (id: string) => {
+    const accounts = await ethereum.request({
+      method: "eth_requestAccounts",
+    });
+    setAccount(accounts[0]);
+    try {
+      await contract.Withdraw(addr, 1, { gasLimit: 1 * 10 ** 6 });
+
       navigate(`/contest/${id}`);
-    }, 400);
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div
