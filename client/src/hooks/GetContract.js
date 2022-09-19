@@ -3,7 +3,7 @@ import { useContract } from "wagmi";
 import { useSigner } from "wagmi";
 
 const GetContract = (addr, abi_data) => {
-  const { data: signer } = useSigner();
+  const { data: signer, isError, isLoading } = useSigner();
 
   const contract = useContract({
     addressOrName: addr,

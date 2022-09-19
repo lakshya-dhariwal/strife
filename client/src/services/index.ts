@@ -36,15 +36,23 @@ export const getWins = async () => {
   // console.log(data);
   const res = [
     {
-      address: "adrrss",
+      address: localStorage.getItem("addr"),
       contest: "pacman",
       contest_id: "ox4GHa",
     },
-    {
-      address: "adrrss",
-      contest: "Poker",
-      contest_id: "zLaobg",
-    },
   ];
   return res;
+};
+
+export const postUpdateScore = (
+  id: string,
+  userName: string,
+  score: number
+) => {
+  const data = axios.put(`${API}/leaderboard/update-score`, {
+    contest_id: id,
+    walletAddress: localStorage.getItem("addr"),
+    score,
+    name: userName,
+  });
 };
